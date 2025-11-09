@@ -1,38 +1,15 @@
-.App {
-  text-align: center;
+.blink {
+  animation: blink 1s steps(2, start) infinite;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* HERO CTA BUTTONS - LIGHT THEME 'GLOW' STYLES - FOR BETTER BUTTON VISIBILITY */
+.btn-glow {
+  box-shadow: inset 0 0 0.5em rgba(255, 255, 255, 0.1),
+    0 0 1em rgba(0, 102, 255, 0.4);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes blink {
   to {
-    transform: rotate(360deg);
+    visibility: hidden;
   }
 }
