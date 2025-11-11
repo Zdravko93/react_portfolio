@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react_portfolio/static/css/main.155bc32c.css",
-    "main.js": "/react_portfolio/static/js/main.5f0d446a.js",
+    "main.css": "/react_portfolio/static/css/main.e44d21bc.css",
+    "main.js": "/react_portfolio/static/js/main.487103a8.js",
     "static/js/404.91233bd9.chunk.js": "/react_portfolio/static/js/404.91233bd9.chunk.js",
     "static/media/weather-app-basic-info.png": "/react_portfolio/static/media/weather-app-basic-info.8b078b4c1ea47ef54b11.png",
     "static/media/weather-app-light-theme-2.png": "/react_portfolio/static/media/weather-app-light-theme-2.6b07c36d17c2cb11e7b9.png",
@@ -34,12 +34,12 @@
     "static/media/user.svg": "/react_portfolio/static/media/user.5ea4dd69d915dff6f7c5a78f54fb8688.svg",
     "static/media/fa-v4compatibility.woff2": "/react_portfolio/static/media/fa-v4compatibility.24fc9d217708cb3f0362.woff2",
     "index.html": "/react_portfolio/index.html",
-    "main.155bc32c.css.map": "/react_portfolio/static/css/main.155bc32c.css.map",
-    "main.5f0d446a.js.map": "/react_portfolio/static/js/main.5f0d446a.js.map",
+    "main.e44d21bc.css.map": "/react_portfolio/static/css/main.e44d21bc.css.map",
+    "main.487103a8.js.map": "/react_portfolio/static/js/main.487103a8.js.map",
     "404.91233bd9.chunk.js.map": "/react_portfolio/static/js/404.91233bd9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.155bc32c.css",
-    "static/js/main.5f0d446a.js"
+    "static/css/main.e44d21bc.css",
+    "static/js/main.487103a8.js"
   ]
 }
