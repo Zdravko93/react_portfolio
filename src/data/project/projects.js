@@ -74,9 +74,9 @@ export const projectsData = [
       },
     ],
     demoLink:
-      "https://zdravko93.github.io/weather_app_context_useReducer_portfolio/",
+      "https://zdravko93.github.io/react_weather_app_context_useReducer_portfolio/",
     codeLink:
-      "https://github.com/Zdravko93/weather_app_context_useReducer_portfolio",
+      "https://github.com/Zdravko93/react_weather_app_context_useReducer_portfolio",
   },
   {
     // REACT MEMORY GAME
