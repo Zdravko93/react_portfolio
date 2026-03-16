@@ -11,6 +11,13 @@ I'm an aspiring **front-end developer** passionate about **building clean**, **u
 Check out the live site here:  
 [React Portfolio Live Demo](https://Zdravko93.github.io/react_portfolio)
 
+**Note:** The project has also been migrated to TypeScript. See the `migration/react-to-typescript` branch for the TypeScript version as a code reference.
+
+## 📂 Branches Overview
+
+- **main** - Original React version (live on GitHub Pages)
+- **migration/react-to-typescript** - TypeScript version (fully migrated, code reference for improved type safety)
+
 ---
 
 ## 📸 Screenshots
@@ -36,6 +43,7 @@ Check out the live site here:
 
 - React
 - JavaScript (ES6+)
+- TypeScript (migration branch)
 - HTML5
 - Tailwind
 - Git & GitHub for version control
@@ -47,31 +55,18 @@ Check out the live site here:
 
 If you want to run this project locally, follow these steps:
 
-1. **Clone the repository**
-
+### React Version (main branch)
 ```bash
-git clone https://github.com/Zdravko93/react_portfolio.git
+git checkout master
+npm install
+npm start
 ```
-
-2. **Navigate into the project directory**
-
+### TypeScript Version (migration branch)
 ```bash
-cd react_portfolio
+git checkout migration/react-to-typescript
+npm install
+npm start
 ```
-
-3. **Install dependencies**
-
-```bash
-   npm install
-```
-
-4. **Start the development server**
-
-```bash
-   npm start
-```
-
-The app will run on http://localhost:3000
 
 ## 🚀 Deployment
 
@@ -83,6 +78,8 @@ npm run deploy
 ```
 
 Live demo is available at: https://Zdravko93.github.io/react_portfolio
+
+**Note:** The live demo is from the React (main) branch. The TypeScript branch is for local code review only.
 
 #### 📫 Contact
 
