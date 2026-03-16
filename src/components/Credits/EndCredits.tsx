@@ -5,8 +5,8 @@ import Card from "../UI/Card";
 import Image from "../UI/Image";
 
 // svg icons - components
-import CutSceneDarkThemeIcon from "./../UI/CutSceneDarkThemeIcon";
-import CutSceneLightThemeIcon from "./../UI/CutSceneLightThemeIcon";
+import CutSceneDarkThemeIcon from "../UI/CutSceneDarkThemeIcon";
+import CutSceneLightThemeIcon from "../UI/CutSceneLightThemeIcon";
 // png - coffe
 import coffeeImg from "../../assets/images/coffee.png";
 // context
@@ -64,7 +64,7 @@ const EndCredits = React.memo(function EndCredits() {
             src={coffeeImg}
             alt=""
             aria-hidden="true"
-            className="w-6 h-6"
+            imageClassName="w-6 h-6"
           />
         </span>
       </motion.p>
@@ -78,7 +78,7 @@ const EndCredits = React.memo(function EndCredits() {
             name: "End Credits",
             description:
               "Final remarks and acknowledgments from Zdravko's personal portfolio.",
-            url: "https://your-domain.com/#the-end", // upisati moj URL
+            url: "https://zdravko93.github.io/react_portfolio/",
             mainEntity: {
               "@type": "Person",
               name: "Zdravko Delić",

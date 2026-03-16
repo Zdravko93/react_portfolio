@@ -26,14 +26,14 @@ export default function Credits() {
   }, [inView, controls]);
 
   const renderedCredits = useMemo(() => {
-    return creditsData.map((item, index) => {
+    return creditsData.map((item) => {
       const images = Array.isArray(item.images) ? item.images : [item.images];
       const firstImage = images[0];
       const secondImage = images[1]; // optional trailing icon before value(text)
 
       return (
         <CreditsItem
-          key={index}
+          key={item.entry}
           item={item}
           firstImage={firstImage}
           secondImage={secondImage}
@@ -41,7 +41,7 @@ export default function Credits() {
         />
       );
     });
-  }, [creditsData]);
+  }, []);
 
   return (
     <Card
@@ -79,11 +79,11 @@ export default function Credits() {
             name: "Credits",
             description:
               "Technologies and tools used in building Zdravko's portfolio.",
-            url: "https://your-domain.com/#credits", // Upisati svoj URL
+            url: "https://zdravko93.github.io/react_portfolio/",
             author: {
               "@type": "Person",
               name: "Zdravko Delić",
-              url: "https://your-domain.com",
+              url: "https://github.com/Zdravko93",
             },
             hasPart: creditsData.map((item) => ({
               "@type": "CreativeWork",
