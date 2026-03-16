@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { motion, MotionProps } from "framer-motion";
+import { useState } from "react";
 
 import sendEmailImg from "../../assets/images/send-email.png";
 
@@ -12,70 +12,67 @@ import Card from "../UI/Card";
 import Image from "../UI/Image";
 import ErrorMessage from "../UI/ErrorMessage";
 
+import { useForm } from "../../customHooks/useForm";
+import { validateForm } from "../../utils/validateForm";
+import { verifyEmailWithMailboxLayer } from "../../utils/emailValidation";
+import { isEmailCached, cacheValidEmail } from "../../utils/emailCache";
+
 import {
   formContainerVariants,
   formChildrenVariants,
   formErrorTextVariants,
 } from "../../data/animations/animations";
 
-// Accessibility hook for user preference (reduced motion)
+import toast from "react-hot-toast";
 import { useMotionProps } from "../../customHooks/useMotionsProps";
 
-import { useForm } from "../../customHooks/useForm";
-import { validateForm } from "../../utils/validateForm";
-import { verifyEmailWithMailboxLayer } from "../../utils/emailValidation";
-import { isEmailCached, cacheValidEmail } from "../../utils/emailCache";
+import type { ContactFormValues } from "../../types/form";
 
-import toast from "react-hot-toast";
+// .env variables
+const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID as string;
+const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID as string;
+const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY as string;
 
-// error ARIA props
-const nameErrorProps = {
+// ARIA error props
+const nameErrorProps: React.HTMLAttributes<HTMLDivElement> = {
   id: "name-error",
   role: "alert",
   "aria-live": "polite",
 };
-
-const emailErrorProps = {
+const emailErrorProps: React.HTMLAttributes<HTMLDivElement> = {
   id: "email-error",
   role: "alert",
   "aria-live": "polite",
 };
-
-const messageErrorProps = {
+const messageErrorProps: React.HTMLAttributes<HTMLDivElement> = {
   id: "message-error",
   role: "alert",
   "aria-live": "polite",
 };
 
-const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // extract from custom hook
-  const { values, errors, handleChange, handleSubmit, resetForm } = useForm(
-    { name: "", email: "", message: "" },
-    validateForm
-  );
 
-  const onSubmitSuccess = async () => {
+  const { values, errors, handleChange, handleSubmit, resetForm } =
+    useForm<ContactFormValues>(
+      { name: "", email: "", message: "" },
+      validateForm,
+    );
+
+  const onSubmitSuccess = async (): Promise<void> => {
     setIsSubmitting(true);
     toast.loading("Validating email...");
 
     const email = values.email.trim();
 
-    // if not cached - cache it
     if (!isEmailCached(email)) {
       const { success, reason } = await verifyEmailWithMailboxLayer(email);
-
       if (!success) {
         toast.dismiss();
         toast.error(`Email validation failed: ${reason}`);
         setIsSubmitting(false);
         return;
       }
-
       cacheValidEmail(email);
     }
 
@@ -83,17 +80,13 @@ export default function ContactForm() {
       await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
-        {
-          name: values.name,
-          email: email,
-          message: values.message,
-        },
-        PUBLIC_KEY
+        { name: values.name, email, message: values.message },
+        PUBLIC_KEY,
       );
       toast.dismiss();
       toast.success("Message sent successfully");
       resetForm();
-    } catch (error) {
+    } catch {
       toast.dismiss();
       toast.error("Failed to send message. Try again later.");
     } finally {
@@ -101,35 +94,36 @@ export default function ContactForm() {
     }
   };
 
-  // Motion props/variants
-  const containerVariants = useMotionProps({
+  // Motion props
+  const containerVariants: MotionProps = useMotionProps({
     variants: formContainerVariants,
   });
-  const childrenVariants = useMotionProps({
+  const childrenVariants: MotionProps = useMotionProps({
     variants: formChildrenVariants,
   });
+  const errorTextMotionProps: MotionProps = useMotionProps({
+    variants: formErrorTextVariants,
+  });
 
-  // Aria props
-  const nameAriaProps = {
+  // ARIA input props
+  const nameAriaProps: React.InputHTMLAttributes<HTMLInputElement> = {
     "aria-invalid": errors.name ? "true" : undefined,
     "aria-describedby": errors.name ? "name-error" : undefined,
     "aria-required": "true",
   };
-
-  const emailAriaProps = {
+  const emailAriaProps: React.InputHTMLAttributes<HTMLInputElement> = {
     "aria-invalid": errors.email ? "true" : undefined,
     "aria-describedby": errors.email ? "email-error" : undefined,
     "aria-required": "true",
   };
-
-  const messageAriaProps = {
+  const messageAriaProps: React.TextareaHTMLAttributes<HTMLTextAreaElement> = {
     "aria-invalid": errors.message ? "true" : undefined,
     "aria-describedby": errors.message ? "message-error" : undefined,
     "aria-required": "true",
   };
 
   return (
-    <Card
+    <Card<typeof motion.section>
       id="contact"
       as={motion.section}
       {...containerVariants}
@@ -147,9 +141,7 @@ export default function ContactForm() {
       <motion.form
         onSubmit={handleSubmit(onSubmitSuccess)}
         {...childrenVariants}
-        className="max-w-md lg:max-w-xl mx-auto bg-[#ffffff] dark:bg-gray-900 p-6 rounded-lg dark:shadow-cyan-900 
-                   shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-gray-100 ring-1 ring-gray-200 
-                   dark:border-none dark:ring-0"
+        className="max-w-md lg:max-w-xl mx-auto bg-[#ffffff] dark:bg-gray-900 p-6 rounded-lg dark:shadow-cyan-900 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-gray-100 ring-1 ring-gray-200 dark:border-none dark:ring-0"
         aria-describedby="contact-description"
       >
         <p id="contact-description" className="sr-only">
@@ -169,7 +161,7 @@ export default function ContactForm() {
           <ErrorMessage
             error={errors.name}
             {...nameErrorProps}
-            {...formErrorTextVariants}
+            motionProps={errorTextMotionProps}
           />
         </div>
 
@@ -186,7 +178,7 @@ export default function ContactForm() {
           <ErrorMessage
             error={errors.email}
             {...emailErrorProps}
-            {...formErrorTextVariants}
+            motionProps={errorTextMotionProps}
           />
         </div>
 
@@ -195,7 +187,7 @@ export default function ContactForm() {
           <TextArea
             id="message"
             name="message"
-            rows="5"
+            rows={5} // fixes TS error
             value={values.message}
             onChange={handleChange}
             {...messageAriaProps}
@@ -203,16 +195,13 @@ export default function ContactForm() {
           <ErrorMessage
             error={errors.message}
             {...messageErrorProps}
-            {...formErrorTextVariants}
+            motionProps={errorTextMotionProps}
           />
         </div>
 
         <Button
           type="submit"
-          className="group w-60 flex items-center justify-center gap-2 text-xs lg:text-sm 
-                     outline outline-1 dark:outline-none bg-[#007acc] hover:bg-blue-500 
-                    dark:bg-cyan-500 dark:hover:bg-cyan-600 focus-visible:outline-none focus-visible:outline-blue-500 dark:focus-visible:outline-blue-500 text-white
-                     transition-colors px-2 py-3 rounded font-semibold"
+          className="group w-60 flex items-center justify-center gap-2 text-xs lg:text-sm outline outline-1 dark:outline-none bg-[#007acc] hover:bg-blue-500 dark:bg-cyan-500 dark:hover:bg-cyan-600 focus-visible:outline-none focus-visible:outline-blue-500 dark:focus-visible:outline-blue-500 text-white transition-colors px-2 py-3 rounded font-semibold"
           disabled={isSubmitting}
         >
           {isSubmitting ? (
@@ -228,7 +217,6 @@ export default function ContactForm() {
         </Button>
       </motion.form>
 
-      {/* SEO  */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -237,7 +225,7 @@ export default function ContactForm() {
             "@type": "ContactPage",
             name: "Contact",
             description: "Use this form to contact Zdravko directly.",
-            url: "https://your-domain.com/#contact", // Ovde upisati moj url
+            url: "https://zdravko93.github.io/react_portfolio/",
             mainEntity: {
               "@type": "ContactForm",
               name: "Send a Raven",
@@ -247,7 +235,7 @@ export default function ContactForm() {
             },
           }),
         }}
-      ></script>
+      />
     </Card>
   );
 }
