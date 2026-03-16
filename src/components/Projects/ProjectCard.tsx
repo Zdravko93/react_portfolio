@@ -13,18 +13,20 @@ import { useFocusTrap } from "../../customHooks/useFocusTrap";
 import { useEscapeKey } from "../../customHooks/useEscapeKey";
 import { useCombinedRefs } from "../../customHooks/useCombinedRefs";
 
+import type { ProjectCardProps } from "../../types/userInterface";
+
 export default function ProjectCard({
   project: { title, description, tech, demoLink, codeLink, detailsLink },
   onDetailsClick,
   index,
-}) {
+}: ProjectCardProps) {
   const controls = useAnimation();
   const [inViewRef, inView] = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
-  const focusRef = useRef(null);
-  const combinedRef = useCombinedRefs(inViewRef, focusRef);
+  const focusRef = useRef<HTMLLIElement>(null);
+  const combinedRef = useCombinedRefs<HTMLLIElement>(inViewRef, focusRef);
 
   const ctaRef = useRef(null);
   const [trapActive, setTrapActive] = useState(false);
@@ -54,7 +56,7 @@ export default function ProjectCard({
   });
 
   const handleKeyDown = useCallback(
-    (e) => {
+    (e: React.KeyboardEvent<HTMLElement>) => {
       if (trapActive) return; // ignore when focus trap active
 
       if (e.key === "Enter" || e.key === " ") {
@@ -62,7 +64,7 @@ export default function ProjectCard({
         setTrapActive(true);
       }
     },
-    [trapActive]
+    [trapActive],
   );
 
   return (

@@ -11,16 +11,18 @@ import ProjectModal from "./ProjectModal";
 
 import { useMotionProps } from "../../customHooks/useMotionsProps";
 
+import type { Project } from "../../types/project";
+
 export default function ProjectsSection() {
   // modal state
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   // Accessibility hook for user preference - reduced motion
   const containerVarians = useMotionProps({
     variants: projectsContainerVariants,
     viewport: { once: true, amount: 0.4 },
   });
 
-  const openModal = (project) => {
+  const openModal = (project: Project) => {
     setSelectedProject(project);
     document.body.style.overflow = "hidden"; // to prevent background scroll
     document.body.style.paddingRight = `${
@@ -35,8 +37,8 @@ export default function ProjectsSection() {
   };
 
   const handleDetailsClick = useCallback(
-    (project) => () => openModal(project),
-    []
+    (project: Project) => () => openModal(project),
+    [],
   );
 
   return (
@@ -75,7 +77,6 @@ export default function ProjectsSection() {
         <ProjectModal project={selectedProject} onClose={closeModal} />
       )}
 
-      {/* SEO - add SEO schema dynamically from 'projectsData' */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -89,10 +90,10 @@ export default function ProjectsSection() {
                 "@type": "Person",
                 name: "Zdravko",
               },
-              url: "https://your-domain.com/#projects",
+              url: "https://github.com/Zdravko93/react_portfolio",
               programmingLanguage: "JavaScript",
               about: project.tech.join(", "),
-            }))
+            })),
           ),
         }}
       ></script>

@@ -12,7 +12,9 @@ import ProjectDetails from "./ProjectDetails";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 
-export default function ProjectModal({ project, onClose }) {
+import type { ProjectModalProps } from "../../types/userInterface";
+
+export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const modalRef = useRef(null);
 
@@ -35,6 +37,9 @@ export default function ProjectModal({ project, onClose }) {
   useEscapeKey(!!project && !lightboxOpen, onClose);
   // Trap focus inside modal window
   useFocusTrap(!!project && !lightboxOpen, modalRef);
+
+  const modalRoot = document.getElementById("modal-root");
+  if (!modalRoot) return null; // nothing to render if modal root doesn't exist
 
   return ReactDOM.createPortal(
     <AnimatePresence>
@@ -82,6 +87,6 @@ export default function ProjectModal({ project, onClose }) {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.getElementById("modal-root")
+    modalRoot as Element,
   );
 }

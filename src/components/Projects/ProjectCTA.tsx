@@ -2,8 +2,10 @@ import React from "react";
 
 import Button from "../UI/Button";
 
+import type { ProjectCTAProps } from "../../types/userInterface";
+
 const ProjectCTA = React.memo(
-  React.forwardRef(
+  React.forwardRef<HTMLDivElement, ProjectCTAProps>(
     ({ demoLink, codeLink, onDetailsClick, title, trapActive }, ref) => {
       const tabIndex = trapActive ? 0 : -1; // Enable focus only when trap is active
 
@@ -44,8 +46,8 @@ const ProjectCTA = React.memo(
           </Button>
         </div>
       );
-    }
-  )
+    },
+  ),
 );
 
 export default ProjectCTA;

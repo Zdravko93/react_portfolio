@@ -1,8 +1,10 @@
+import type { ProjectTagProps } from "../../types/userInterface";
+
 export default function ProjectTag({
   label,
   isLightTheme,
   isModalTag = false,
-}) {
+}: ProjectTagProps) {
   const baseClasses =
     "outline outline-1 font-semibold tracking-wide leading-relaxed px-3 py-1 rounded-full text-[0.6rem]  dark:outline-none";
   // Light theme modal tag styles
