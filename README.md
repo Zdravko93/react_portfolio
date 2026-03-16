@@ -6,6 +6,18 @@ I'm an aspiring **front-end developer** passionate about **building clean**, **u
 
 ---
 
+## 📌 Table of Contents
+- [Live Demo](#-live-demo)
+- [Branches Overview](#-branches-overview)
+- [Screenshots](#-screenshots)
+- [Features](#-features)
+- [Technologies Used](#-technologies-used)
+- [Installation & Local Setup](#-installation--local-setup)
+- [Deployment](#-deployment)
+- [Contact](#-contact)
+
+---
+
 ## 🌐 Live Demo
 
 Check out the live site here:  
