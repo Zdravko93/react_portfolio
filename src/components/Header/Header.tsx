@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 import Button from "../UI/Button";
-import RenderNavLinks from "../Header/RenderNavLinks";
+import RenderNavLinks from "./RenderNavLinks";
 import ThemeSwitcher from "../Theme/ThemeSwitcher";
 
 import { useEscapeKey } from "../../customHooks/useEscapeKey";
@@ -9,15 +9,19 @@ import { useFocusTrap } from "../../customHooks/useFocusTrap";
 import { useRestoreFocus } from "../../customHooks/useRestoreFocus";
 import { useClickOutSide } from "../../customHooks/useClickOutside";
 
-const Header = React.memo(function Header({
+import type { HeaderProps } from "../../types/header";
+
+const Header: React.FC<HeaderProps> = React.memo(function Header({
   activeSection,
   onNavClick,
   viewportWidth,
   menuOpen,
   toggleMenu,
 }) {
-  const menuRef = useRef(null);
-  const burgerButtonRef = useRef(null);
+  const menuRef = useRef<HTMLElement | null>(null);
+  const burgerButtonRef = useRef<HTMLButtonElement | HTMLAnchorElement | null>(
+    null,
+  );
 
   // Accessibility hooks
   useEscapeKey(menuOpen, toggleMenu);

@@ -1,13 +1,14 @@
-import RenderNavLink from "./RenderNavLink";
-
 import { navLinks } from "../../data/project/data";
+
+import RenderNavLink from "./RenderNavLink";
+import type { RenderNavLinksProps } from "../../types/header";
 
 export default function RenderNavLinks({
   activeSection,
   onNavClick,
   layout = "desktop",
   menuOpen = false,
-}) {
+}: RenderNavLinksProps) {
   return (
     <ul
       className={

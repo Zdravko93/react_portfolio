@@ -1,4 +1,11 @@
-export default function RenderNavLink({ layout, isActive, link, onClick }) {
+import type { RenderNavLinkProps } from "../../types/header";
+
+export default function RenderNavLink({
+  layout,
+  isActive,
+  link,
+  onClick,
+}: RenderNavLinkProps) {
   return (
     <a
       {...(layout === "mobile" ? { role: "menuitem" } : {})}
