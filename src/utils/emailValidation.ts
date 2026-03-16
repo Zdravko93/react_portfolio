@@ -1,4 +1,8 @@
-export async function verifyEmailWithMailboxLayer(email) {
+import type { EmailVerificationResult } from "../types/email";
+
+export async function verifyEmailWithMailboxLayer(
+  email: string,
+): Promise<EmailVerificationResult> {
   const trimmedEmail = email.trim(); // trim whitespace
 
   if (!trimmedEmail || !trimmedEmail.includes("@")) {
@@ -11,7 +15,7 @@ export async function verifyEmailWithMailboxLayer(email) {
   const accessKey = process.env.REACT_APP_MAILBOXLAYER_API_KEY;
 
   const url = `https://apilayer.net/api/check?access_key=${accessKey}&email=${encodeURIComponent(
-    trimmedEmail
+    trimmedEmail,
   )}&smtp=1&format=1`;
 
   try {
