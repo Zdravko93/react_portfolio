@@ -1,10 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+import type { SkillCardProps } from "../../types/userInterface";
+
 const SkillCard = React.memo(function SkillCard({
   skill,
   ...skillTagVariants
-}) {
+}: SkillCardProps) {
   return (
     <motion.li
       {...skillTagVariants}

@@ -9,11 +9,14 @@ import {
 } from "../../data/animations/animations";
 import { useMotionProps } from "../../customHooks/useMotionsProps";
 
+import type { SkillsSectionProps } from "../../types/userInterface";
+
 const SkillsSection = React.memo(function SkillsSection({
   skills = [],
   subtitleClasses = "",
   children,
-}) {
+  ...motionProps
+}: SkillsSectionProps) {
   const mainContainerVariants = useMotionProps({
     variants: undefined,
     viewport: { once: true, amount: 0.2 },
@@ -27,7 +30,7 @@ const SkillsSection = React.memo(function SkillsSection({
   });
 
   return (
-    <motion.div className="mt-24" {...mainContainerVariants}>
+    <motion.div className="mt-24" {...mainContainerVariants} {...motionProps}>
       <h3
         className={`text-blue-700 dark:text-[#00ff88] text-center md:text-2xl ${subtitleClasses}`}
       >
