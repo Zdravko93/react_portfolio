@@ -1,4 +1,6 @@
-export default function LightThemeIcon({ className }) {
+import type { IconProps } from "../../types/userInterface";
+
+export default function LightThemeIcon({ className, ...props }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +10,7 @@ export default function LightThemeIcon({ className }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      {...props}
       className={`lucide lucide-sun-icon lucide-sun ${className}`}
     >
       <circle cx="12" cy="12" r="4" />

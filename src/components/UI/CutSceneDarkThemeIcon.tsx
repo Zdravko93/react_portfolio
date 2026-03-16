@@ -1,5 +1,7 @@
+import type { IconProps } from "../../types/userInterface";
+
 // light icon for dark theme
-export default function CutSceneDarkThemeIcon({ ...props }) {
+export default function CutSceneDarkThemeIcon(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

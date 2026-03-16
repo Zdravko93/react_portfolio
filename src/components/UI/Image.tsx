@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import type { ImageProps } from "../../types/userInterface";
 
 const Image = React.memo(function Image({
   src,
@@ -8,7 +9,7 @@ const Image = React.memo(function Image({
   figureClassName = "",
   captionClassName = "",
   imageClassName = "",
-}) {
+}: ImageProps) {
   const imageElement = useMemo(() => {
     if (!src) return null;
 
