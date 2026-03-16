@@ -1,14 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, RefObject } from "react";
 
-export function useFocusTrap(active, containerRef) {
+export function useFocusTrap<T extends HTMLElement>(
+  active: boolean,
+  containerRef: RefObject<T | null>,
+): void {
   useEffect(() => {
     if (!active || !containerRef.current) return;
 
     const container = containerRef.current;
 
-    const focusableElements = container.querySelectorAll(
-      `a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])`
-    );
+    const focusableElements: NodeListOf<HTMLElement> =
+      container.querySelectorAll(
+        `a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])`,
+      );
 
     if (focusableElements.length === 0) return;
 
@@ -20,7 +24,7 @@ export function useFocusTrap(active, containerRef) {
       firstElement?.focus();
     }, 0);
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key !== "Tab") return;
 
       if (e.shiftKey) {

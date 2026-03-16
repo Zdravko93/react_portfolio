@@ -1,4 +1,6 @@
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
+import type { MotionPropsOptions } from "../types/userInterface";
+import { MotionProps } from "framer-motion";
 
 export function useMotionProps({
   variants,
@@ -6,16 +8,16 @@ export function useMotionProps({
   whileInView = "visible",
   viewport = { once: true, amount: 0.6 },
   transition = { duration: 0.5, ease: "easeOut" },
-  animate = undefined,
-  exit = undefined,
-}) {
+  animate,
+  exit,
+}: MotionPropsOptions): MotionProps {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   if (prefersReducedMotion) {
     return {};
   }
 
-  const motionProps = {
+  const motionProps: MotionProps = {
     variants,
     initial,
     whileInView,
@@ -25,10 +27,12 @@ export function useMotionProps({
     exit,
   };
 
-  // Strip undefined values
-  Object.keys(motionProps).forEach(
-    (key) => motionProps[key] === undefined && delete motionProps[key]
-  );
+  // Strip undefined safely
+  (Object.keys(motionProps) as (keyof MotionPropsOptions)[]).forEach((key) => {
+    if (motionProps[key] === undefined) {
+      delete motionProps[key];
+    }
+  });
 
   return motionProps;
 }

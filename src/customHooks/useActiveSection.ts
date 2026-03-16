@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
 
-export function useActiveSection(threshold = 0.4) {
+export function useActiveSection(threshold = 0.4): string {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
+    const sections: NodeListOf<HTMLElement> =
+      document.querySelectorAll("section[id]");
 
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            setActiveSection((entry.target as HTMLElement).id);
           }
         });
       },
       {
         threshold,
-      }
+      },
     );
 
     sections.forEach((section) => observer.observe(section));
