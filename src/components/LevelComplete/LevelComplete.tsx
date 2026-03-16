@@ -21,6 +21,8 @@ import { useMotionProps } from "../../customHooks/useMotionsProps";
 // context
 import { useTheme } from "../../context/ThemeContext";
 
+import type { LevelCompleteItemData } from "../../types/dataTypes";
+
 const MotionCTAButton = motion.create(Button);
 
 export default function LevelComplete() {
@@ -58,13 +60,10 @@ export default function LevelComplete() {
           {...containerVariants}
           className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto max-w-6xl"
         >
-          {levelCompleteData.map(({ entry, value, percent, image }, index) => (
+          {levelCompleteData.map((item: LevelCompleteItemData, index) => (
             <LevelCompleteItem
               key={index}
-              entry={entry}
-              value={value}
-              percent={percent}
-              image={image}
+              {...item}
               childrenVariants={childrenVariants.variants}
             />
           ))}
@@ -96,17 +95,19 @@ export default function LevelComplete() {
             name: "Level Complete",
             description:
               "Summary of achievements and acquired skills of Zdravko.",
-            url: "https://your-domain.com/#level-complete", // Upisati moj URL
+            url: "https://github.com/Zdravko93/react_portfolio",
             mainEntity: {
               "@type": "Person",
               name: "Zdravko",
-              knowsAbout: levelCompleteData.map((item) => ({
-                "@type": "Achievement",
-                name: item.entry,
-                description: Array.isArray(item.value)
-                  ? item.value.join(", ")
-                  : item.value,
-              })),
+              knowsAbout: levelCompleteData.map(
+                (item: LevelCompleteItemData) => ({
+                  "@type": "Achievement",
+                  name: item.entry,
+                  description: Array.isArray(item.value)
+                    ? item.value.join(", ")
+                    : item.value,
+                }),
+              ),
             },
           }),
         }}
