@@ -4,11 +4,12 @@ import Image from "../UI/Image";
 import darkClasses from "./StatsGrid.module.css";
 import lightClasses from "./StatsGrid.light.module.css";
 
-export default function StatGrid({ mounted, stat, isLight }) {
+import type { StatGridProps } from "../../types/userInterface";
+
+export default function StatGrid({ mounted, stat, isLight }: StatGridProps) {
   return (
     <Card
       as="div"
-      key={stat.label}
       className={`min-w-fit
         border-2 p-[0.75rem] text-[0.5rem] sm:text-[0.7rem]
         ${stat.fullWidth ? "col-span-2" : ""}
@@ -28,10 +29,10 @@ export default function StatGrid({ mounted, stat, isLight }) {
             alt={stat.alt || `${stat.label} icon`}
             imageClassName="w-8"
           />
-          <p>{stat.description}</p>
+          {stat.description && <p>{stat.description}</p>}
         </div>
       )}
-      {"percent" in stat && (
+      {stat.percent !== undefined && (
         <>
           <span className="float-right">{stat.percent}%</span>
           <div

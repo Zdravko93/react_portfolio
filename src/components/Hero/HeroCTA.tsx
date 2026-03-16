@@ -12,9 +12,11 @@ import { useSoundPlayer } from "../../customHooks/useSoundEffects";
 
 import { useTheme } from "../../context/ThemeContext";
 
-const MotionCTAButton = motion.create(Button);
+import type { HeroCTAProps } from "../../types/hero";
 
-export default function HeroCTA({ toggleMute, isMuted }) {
+const MotionCTAButton = motion(Button);
+
+export default function HeroCTA({ toggleMute, isMuted }: HeroCTAProps) {
   // extract from custom hook
   const { playSwordClash, playChime } = useSoundPlayer(isMuted);
   // derive mute on/off icons based on 'isMuted' state

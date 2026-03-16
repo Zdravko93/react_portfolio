@@ -16,7 +16,9 @@ import {
 
 import { useMotionProps } from "../../customHooks/useMotionsProps";
 
-export default function Hero({ toggleMute, isMuted }) {
+import type { HeroProps } from "../../types/hero";
+
+export default function Hero({ toggleMute, isMuted }: HeroProps) {
   const containerVariants = useMotionProps({
     variants: heroContainerVariants,
     initial: "initial",
