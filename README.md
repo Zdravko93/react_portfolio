@@ -89,7 +89,7 @@ npm run build
 npm run deploy
 ```
 
-**Note:** The live demo uses the React (main) branch. The TypeScript migration branch is maintained for code reference and local review.
+**Note:** The live demo uses the React (master) branch. The TypeScript migration branch is maintained for code reference and local review.
 
 
 #### 📫 Contact
