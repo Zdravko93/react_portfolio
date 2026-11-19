@@ -26,7 +26,7 @@ Check out the live website:
 
 ## 📂 Branches Overview
 
-- **main** - Original React implementation (deployed on GitHub Pages)
+- **master** - Original React implementation (live deployment)
 - **migration/react-to-typescript** - Fully migrated TypeScript version, maintained as a code reference demonstrating improved type safety.
 
 ---
