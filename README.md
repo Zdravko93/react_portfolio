@@ -1,8 +1,6 @@
 # React Portfolio
 
-A personal portfolio website built with React to showcase my projects, skills, and experience. Designed to be fully responsive and visually engaging, it highlights my work and provides a way to contact me directly.
-
-I'm an aspiring **front-end developer** passionate about **building clean**, **user-friendly** web interfaces and **continuously improving** my skills.
+A personal portfolio website built with React to showcase my projects, skills, and experience. Designed to be responsive, intuitive, and visually engaging, it provides an onverview of my work and a way to get in touch.
 
 ---
 
@@ -20,15 +18,16 @@ I'm an aspiring **front-end developer** passionate about **building clean**, **u
 
 ## 🌐 Live Demo
 
-Check out the live site here:  
+Check out the live website:
+
 [React Portfolio Live Demo](https://Zdravko93.github.io/react_portfolio)
 
 **Note:** The project has also been migrated to TypeScript. See the `migration/react-to-typescript` branch for the TypeScript version as a code reference.
 
 ## 📂 Branches Overview
 
-- **main** - Original React version (live on GitHub Pages)
-- **migration/react-to-typescript** - TypeScript version (fully migrated, code reference for improved type safety)
+- **main** - Original React implementation (deployed on GitHub Pages)
+- **migration/react-to-typescript** - Fully migrated TypeScript version, maintained as a code reference demonstrating improved type safety.
 
 ---
 
@@ -43,11 +42,12 @@ Check out the live site here:
 
 ## ⚡ Features
 
-- Responsive design for mobile, tablet, and desktop screens
-- Projects showcase with live links and descriptions
-- Skills section highlighting technologies I work with
+- Fully responsive layout for mobile, tablet, and desktop devices
+- Projects showcase with descriptions and live links
+- Skills section highlighting technologies and development experience
 - Contact form for direct inquiries
-- Built using modern React practices
+- Dark and light themes
+- Built with modern React development practices
 
 ---
 
@@ -57,9 +57,9 @@ Check out the live site here:
 - JavaScript (ES6+)
 - TypeScript (migration branch)
 - HTML5
-- Tailwind
-- Git & GitHub for version control
-- GitHub Pages for deployment
+- Tailwind CSS
+- Git & GitHub
+- GitHub Pages (deployment)
 
 ---
 
@@ -82,23 +82,24 @@ npm start
 
 ## 🚀 Deployment
 
-This portfolio is deployed using **GitHub Pages**:
+The React version is deployed using **GitHub Pages**:
 
 ```bash
 npm run build
 npm run deploy
 ```
 
-Live demo is available at: https://Zdravko93.github.io/react_portfolio
+**Note:** The live demo uses the React (main) branch. The TypeScript migration branch is maintained for code reference and local review.
 
-**Note:** The live demo is from the React (main) branch. The TypeScript branch is for local code review only.
 
 #### 📫 Contact
 
-Created by **Zdravko93** – feel free to reach out!
+Created by **Zdravko93**.
+
+Feel free to connect:
 
 - LinkedIn: [https://www.linkedin.com/in/zdravkodelic/](https://www.linkedin.com/in/zdravkodelic/)
 - Frontend Mentor: [https://www.frontendmentor.io/profile/Zdravko93](https://www.frontendmentor.io/profile/Zdravko93)
 - GitHub: [https://github.com/Zdravko93](https://github.com/Zdravko93)
 
-⭐ If you like this project, consider giving it a star — it helps me grow as a developer!
+⭐ If you like this project, consider giving it a star!
